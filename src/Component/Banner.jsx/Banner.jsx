@@ -26,9 +26,9 @@ export default function Banner() {
     ];
     return (
         <>
-            <Swiper  navigation={true}  loop={true} modules={[Navigation]} className="mySwiper h-[40vh] sm:h-[50vh] md:h-[60] lg:h-[80vh] rounded-lg w-full">
+            <Swiper navigation={true} loop={true} modules={[Navigation]} className="mySwiper h-[40vh] sm:h-[50vh] md:h-[60] lg:h-[80vh] rounded-lg w-full">
                 {
-                    bannerData.map(item => <SwiperSlide ><img src={item?.image} alt="" className='h-full w-full bg-black ' /></SwiperSlide>)
+                    bannerData.map((item, index) => <SwiperSlide key={index}><img  src={item?.image} alt="" className='h-full w-full bg-black ' /></SwiperSlide>)
                 }
 
             </Swiper>
