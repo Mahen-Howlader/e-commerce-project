@@ -6,8 +6,8 @@ import { NavLink } from "react-router-dom";
 
 function Navbar(props) {
     return (
-        <div className="">
-            <div className="navbar container mx-auto  flex items-center mb-1">
+        <div className="bg-white border-b-2 fixed w-full z-50 top-0 left-0">
+            <div className="navbar  container mx-auto  flex items-center mb-1">
                 <div className="navbar-start">
                     <div className="dropdown ">
                         <div tabIndex={0} role="button" className="lg:hidden mr-4  hover:text-indigo-400">
