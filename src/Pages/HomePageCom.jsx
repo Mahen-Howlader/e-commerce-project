@@ -1,6 +1,7 @@
 import Banner from "../Component/Banner/Banner";
 import Newcollection from "../Component/NewCollection/Newcollection";
 import Product from "../Component/Product/Product";
+import Sendmessage from "../Component/Sendmessage/Sendmessage";
 import Offer from './../Component/Offer/Offer';
 
 function HomePageCom(props) {
@@ -10,6 +11,7 @@ function HomePageCom(props) {
             <Product></Product>
             <Offer></Offer>
             <Newcollection></Newcollection>
+            <Sendmessage></Sendmessage>
         </div>
     );
 }

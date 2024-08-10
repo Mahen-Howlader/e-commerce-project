@@ -41,7 +41,7 @@ function Navbar(props) {
                             </li>
                             <li className="md:px-4 md:py-2 font-bold">
                                 <NavLink
-                                    to="/men"
+                                    to="/mens"
                                     className={({ isActive }) => isActive ? "border-b-2 pb-1 text-indigo-600 border-indigo-500  flex items-center gap-x-2" : " flex items-center gap-x-2"}
                                 >
                                     <MdPeople size={20} />
@@ -51,7 +51,7 @@ function Navbar(props) {
                             </li>
                             <li className="md:px-4 md:py-2 font-bold">
                                 <NavLink
-                                    to="/women"
+                                    to="/womens"
                                     className={({ isActive }) => isActive ? "border-b-2 pb-1 text-indigo-600 border-indigo-500  flex items-center gap-x-2" : " flex items-center gap-x-2"}
                                 >
                                     <GrRestroomWomen size={20} />
@@ -61,7 +61,7 @@ function Navbar(props) {
                             </li>
                             <li className="md:px-4 md:py-2 font-bold">
                                 <NavLink
-                                    to="/kid"
+                                    to="/kids"
                                     className={({ isActive }) => isActive ? "border-b-2 pb-1 text-indigo-600 border-indigo-500  flex items-center gap-x-2" : " flex items-center gap-x-2"}
                                 >
                                     <LiaBabySolid size={20} />
@@ -88,7 +88,7 @@ function Navbar(props) {
                         </li>
                         <li className="md:px-4 md:py-2 font-bold">
                             <NavLink
-                                to="/men"
+                                to="/mens"
                                 className={({ isActive }) => isActive ? "border-b-2 pb-1 text-indigo-600 border-indigo-500  flex items-center gap-x-2" : " flex items-center gap-x-2"}
                             >
                                 <MdPeople size={20} />
@@ -98,7 +98,7 @@ function Navbar(props) {
                         </li>
                         <li className="md:px-4 md:py-2 font-bold">
                             <NavLink
-                                to="/women"
+                                to="/womens"
                                 className={({ isActive }) => isActive ? "border-b-2 pb-1 text-indigo-600 border-indigo-500  flex items-center gap-x-2" : " flex items-center gap-x-2"}
                             >
                                 <GrRestroomWomen size={20} />
@@ -108,7 +108,7 @@ function Navbar(props) {
                         </li>
                         <li className="md:px-4 md:py-2 font-bold">
                             <NavLink
-                                to="/kid"
+                                to="/kids"
                                 className={({ isActive }) => isActive ? "border-b-2 pb-1 text-indigo-600 border-indigo-500  flex items-center gap-x-2" : " flex items-center gap-x-2"}
                             >
                                 <LiaBabySolid size={20} />

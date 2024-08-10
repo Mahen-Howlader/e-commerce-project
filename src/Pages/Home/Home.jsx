@@ -10,7 +10,7 @@ function Home() {
         
         <div >
            <Navbar></Navbar>
-           <div className="container mx-auto pt-5">
+           <div className="container mx-auto pt-5 min-h-[calc(100vh-348px)]">
             <Outlet></Outlet>
            </div>
            <Footer></Footer>
