@@ -1,7 +1,7 @@
 import { FaHome } from "react-icons/fa";
-import { GrRestroomWomen } from "react-icons/gr";
+import { GrDashboard, GrRestroomWomen } from "react-icons/gr";
 import { LiaBabySolid } from "react-icons/lia";
-import { MdMenu, MdPeople } from "react-icons/md";
+import { MdDashboard, MdMenu, MdPeople } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 
 function Navbar(props) {
@@ -116,13 +116,23 @@ function Navbar(props) {
                                 <span>Kid's</span>
                             </NavLink>
                         </li>
+                        <li className="md:px-4 md:py-2 font-bold">
+                            <NavLink
+                                to="/dashboard"
+                                className={({ isActive }) => isActive ? "border-b-2 pb-1 text-indigo-600 border-indigo-500  flex items-center gap-x-2" : " flex items-center gap-x-2"}
+                            >
+                                <MdDashboard size={20} />
+
+                                <span>Dashboard</span>
+                            </NavLink>
+                        </li>
 
 
                     </ul>
                 </div>
                 <div className="navbar-end">
                     <div className="order-2 md:order-3">
-                        <button className="px-4 py-2 bg-indigo-500 hover:bg-indigo-600 text-gray-50 rounded-xl flex items-center gap-2">
+                        <NavLink to={"/login"} className="px-4 py-2 bg-indigo-500 hover:bg-indigo-600 text-gray-50 rounded-xl flex items-center gap-2">
                             {/* Heroicons - Login Solid */}
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -136,8 +146,8 @@ function Navbar(props) {
                                     clipRule="evenodd"
                                 />
                             </svg>
-                            <span>Login</span>
-                        </button>
+                            <p>Login</p>
+                        </NavLink>
                     </div>
                 </div>
             </div>

@@ -15,7 +15,7 @@ function Product() {
 
 if(isLoading) return <Loading></Loading>
 
-console.log(data)
+// console.log(data)
 
     return (
         <div >
