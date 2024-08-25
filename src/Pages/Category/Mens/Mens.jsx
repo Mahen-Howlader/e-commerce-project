@@ -7,24 +7,16 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 function Mens() {
-    const [currentpage, setCurrentPage] = useState(1);
+    const [currentpage, setCurrentPage] = useState(0);
     const [perPage, setPerPage] = useState(5);
 
     const { error, data: allKidsData, isLoading: DataLoading } = useQuery({
-        queryKey: ['populardata',perPage],
+        queryKey: ['populardata', perPage,currentpage],
         queryFn: async () => {
             const { data } = await axios.get(`${import.meta.env.VITE_API}/kidscollection?filter=men&page=${currentpage}&size=${perPage}`);
             return data;
         }
     })
-    // const {  data: dataCount, isLoading: countLoading } = useQuery({
-    //     queryKey: ['populardata'],
-    //     queryFn: async () => {
-    //         const { data } = await axios.get(`${import.meta.env.VITE_API}/kidscollectionCount`);
-    //         return data;
-    //     }
-    // });
-
 
     if (DataLoading) return <Loading></Loading>
     const allData = allKidsData?.result;
@@ -38,12 +30,27 @@ function Mens() {
 
 
     function handelCurrentPage(val) {
-        console.log(val)
+        // console.log(val)
+        setCurrentPage(parseInt(val))
+
     }
-    function handelPerPage(e){
-       const dataCount =  parseInt(e.target.value)
-       setPerPage(dataCount)
-       setCurrentPage(1)
+    function handelPerPage(e) {
+        const dataCount = parseInt(e.target.value)
+        setPerPage(dataCount)
+        setCurrentPage(0)
+    }
+
+
+
+    function handelNextPage() {
+        if (currentpage < page?.length - 1) {
+            setCurrentPage(currentpage + 1)
+        }
+    }
+    function handelPrePage() {
+        if (currentpage > 0) {
+            setCurrentPage(currentpage - 1)
+        }
     }
 
 
@@ -97,7 +104,7 @@ function Mens() {
                     <div className="flex gap-x-5">
                         <nav aria-label="Pagination" className="isolate inline-flex -space-x-px rounded-md shadow-sm">
                             <a
-                                href="#"
+                            onClick={handelPrePage}
                                 className="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
                             >
                                 <span className="sr-only">Previous</span>
@@ -106,11 +113,11 @@ function Mens() {
                             {
                                 page?.map((val, index) => {
                                     return <Link
-                                        onClick={() => handelCurrentPage(val + 1)}
+                                        onClick={() => handelCurrentPage(val)}
                                         key={index}
-                                        className={`relative z-10 inline-flex items-center text-black border  px-4 py-2 text-sm font-semibold  focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600  ${currentpage === (val + 1) && "bg-indigo-700"}`}
+                                        className={`relative z-10 inline-flex items-center text-black border  px-4 py-2 text-sm font-semibold  focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600  ${currentpage === (val) && "bg-indigo-700"}`}
                                     >
-                                        {val + 1}
+                                        {val}
                                     </Link>
                                 })
                             }
@@ -120,7 +127,7 @@ function Mens() {
                                 ...
                             </span>
                             <a
-                                href="#"
+                            onClick={handelNextPage}
                                 className="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
                             >
                                 <span className="sr-only">Next</span>
