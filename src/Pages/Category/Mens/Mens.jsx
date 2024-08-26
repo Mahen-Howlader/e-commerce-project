@@ -9,11 +9,12 @@ import { Link } from "react-router-dom";
 function Mens() {
     const [currentpage, setCurrentPage] = useState(0);
     const [perPage, setPerPage] = useState(5);
+    const [sorting, setSorting] = useState("");
 
     const { error, data: allKidsData, isLoading: DataLoading } = useQuery({
-        queryKey: ['populardata', perPage,currentpage],
+        queryKey: ['populardata', perPage,currentpage,sorting],
         queryFn: async () => {
-            const { data } = await axios.get(`${import.meta.env.VITE_API}/kidscollection?filter=men&page=${currentpage}&size=${perPage}`);
+            const { data } = await axios.get(`${import.meta.env.VITE_API}/kidscollection?filter=men&page=${currentpage}&size=${perPage}&sort=${sorting}`);
             return data;
         }
     })
@@ -30,9 +31,7 @@ function Mens() {
 
 
     function handelCurrentPage(val) {
-        // console.log(val)
         setCurrentPage(parseInt(val))
-
     }
     function handelPerPage(e) {
         const dataCount = parseInt(e.target.value)
@@ -53,6 +52,12 @@ function Mens() {
         }
     }
 
+    function handelSortingValue(e){
+        const data = e.target.value;
+        console.log(data);
+        setSorting(data)
+    }
+
 
     // console.log(page)
     return (
@@ -61,13 +66,15 @@ function Mens() {
 
                 <form className="min-w-52  my-5 ">
                     <select
+                        value={sorting}
+                        onChange={handelSortingValue}
                         id="countries"
                         className="bg-gray-50 border min-w-52 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     >
                         <option defaultValue>Sort</option>
 
-                        <option value="US">Low Price</option>
-                        <option value="CA">High Price</option>
+                        <option value="asc">Low Price</option>
+                        <option value="dec">High Price</option>
                     </select>
                 </form>
             </div>
