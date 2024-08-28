@@ -1,11 +1,13 @@
 import { FaStar } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 function Popularproductcard({ product }) {
     // console.log(product)
     return (
         <div>
-            <a className="p-3  border-2 rounded-lg bg-[#EBEBEB]  hover:shadow-2xl hover:shadow-blue-500/20 flex flex-col items-center"
-                href="#">
+            <Link className="p-3  border-2 rounded-lg bg-[#EBEBEB]  hover:shadow-2xl hover:shadow-blue-500/20 flex flex-col items-center"
+                to={product?._id}
+            >
                 <img src={product?.image} className="shadow w-full h-[300px] object-cover rounded-lg overflow-hidden border" />
                 <div className="mt-8">
                     <h4 className="font-bold text-xl">{product?.name}</h4>
@@ -15,15 +17,15 @@ function Popularproductcard({ product }) {
                         <span className="text-xl font-medium  text-black">Price : {product?.new_price}</span>
                         <span className="text-xl font-medium line-through text-gray-600">Price : {product?.old_price}</span>
                         <div className="flex">
-                        <FaStar />
-                        <FaStar />
-                        <FaStar />
-                        <FaStar />
-                        <FaStar />
+                            <FaStar />
+                            <FaStar />
+                            <FaStar />
+                            <FaStar />
+                            <FaStar />
                         </div>
                     </div>
                 </div>
-            </a>
+            </Link>
         </div>
     );
 }

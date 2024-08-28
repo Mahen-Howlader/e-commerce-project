@@ -12,7 +12,7 @@ function Mens() {
     const [sorting, setSorting] = useState("");
 
     const { error, data: allKidsData, isLoading: DataLoading } = useQuery({
-        queryKey: ['populardata', perPage,currentpage,sorting],
+        queryKey: ['populardata', perPage, currentpage, sorting],
         queryFn: async () => {
             const { data } = await axios.get(`${import.meta.env.VITE_API}/kidscollection?filter=men&page=${currentpage}&size=${perPage}&sort=${sorting}`);
             return data;
@@ -52,7 +52,7 @@ function Mens() {
         }
     }
 
-    function handelSortingValue(e){
+    function handelSortingValue(e) {
         const data = e.target.value;
         console.log(data);
         setSorting(data)
@@ -71,7 +71,7 @@ function Mens() {
                         id="countries"
                         className="bg-gray-50 border min-w-52 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     >
-                        <option defaultValue>Sort</option>
+                        <option value="">Sort</option>
 
                         <option value="asc">Low Price</option>
                         <option value="dec">High Price</option>
@@ -111,7 +111,7 @@ function Mens() {
                     <div className="flex gap-x-5">
                         <nav aria-label="Pagination" className="isolate inline-flex -space-x-px rounded-md shadow-sm">
                             <a
-                            onClick={handelPrePage}
+                                onClick={handelPrePage}
                                 className="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
                             >
                                 <span className="sr-only">Previous</span>
@@ -134,7 +134,7 @@ function Mens() {
                                 ...
                             </span>
                             <a
-                            onClick={handelNextPage}
+                                onClick={handelNextPage}
                                 className="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
                             >
                                 <span className="sr-only">Next</span>

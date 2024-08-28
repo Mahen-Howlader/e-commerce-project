@@ -9,6 +9,7 @@ import Login from "../Pages/Authentication/Login";
 import SignUp from "../Pages/Authentication/SignUp";
 import Dashboard from "../Pages/Dashboard/Dashboard";
 import Statistic from "../DashboardComponent/Statistic/Statistic";
+import Productdetails from "../Component/ProductDetails/Productdetails";
 const router = createBrowserRouter([
     {
         path: "/",
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
             {
                 path: "/kids",
                 element: <Kids></Kids>
+            },
+            {
+                path: "/kids/:id",
+                element: <Productdetails></Productdetails>
             },
             {
                 path: "/mens",
@@ -43,10 +48,10 @@ const router = createBrowserRouter([
     {
         path: "/dashboard",
         element: <Dashboard />,
-        children : [
+        children: [
             {
-                index : true,
-                element : <Statistic></Statistic>
+                index: true,
+                element: <Statistic></Statistic>
             }
         ]
     },
