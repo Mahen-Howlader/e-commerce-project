@@ -2,8 +2,16 @@ import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import Loading from "../Loading/Loading";
 import axios from "axios";
+import { useState } from "react";
 
 function Productdetails() {
+    const [size, setSize] = useState('');
+    const [color, setColor] = useState('');
+
+    const handleSizeChange = (e) => setSize(e.target.value);
+    const handleColorChange = (e) => setColor(e.target.value);
+
+
     const { id } = useParams();
     const { error, data, isLoading } = useQuery({
         queryKey: ['kid', id],
@@ -12,12 +20,11 @@ function Productdetails() {
             return data;
         }
     })
-    console.log(id)
     if (isLoading) return <Loading></Loading>
-    console.log(data)
 
     const { name, category, brand_name, image, new_price, old_price, rating, description } = data;
 
+    console.log(size, color)
     return (
         <div className="mt-20">
             <div className="bg-gray-100 dark:bg-gray-800 py-8">
@@ -63,37 +70,40 @@ function Productdetails() {
                                     <span className="text-gray-600 dark:text-gray-300">In Stock</span>
                                 </div>
                             </div>
-                            <div className="mb-4">
-                                <span className="font-bold text-gray-700 dark:text-gray-300">
-                                    Select Color:
-                                </span>
-                                <div className="flex items-center mt-2">
-                                    <button className="w-6 h-6 rounded-full bg-gray-800 dark:bg-gray-200 mr-2"></button>
-                                    <button className="w-6 h-6 rounded-full bg-red-500 dark:bg-red-700 mr-2"></button>
-                                    <button className="w-6 h-6 rounded-full bg-blue-500 dark:bg-blue-700 mr-2"></button>
-                                    <button className="w-6 h-6 rounded-full bg-yellow-500 dark:bg-yellow-700 mr-2"></button>
+                            <div className="max-w-sm mx-auto p-4 bg-white shadow-md rounded">
+
+                                <div className="mb-4">
+                                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                                        Select Size:
+                                    </label>
+                                    <select
+                                        value={size}
+                                        onChange={handleSizeChange}
+                                        className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    >
+                                        <option value="">Choose Size</option>
+                                        <option value="S">Small</option>
+                                        <option value="M">Medium</option>
+                                        <option value="L">Large</option>
+                                        <option value="XL">Extra Large</option>
+                                    </select>
                                 </div>
-                            </div>
-                            <div className="mb-4">
-                                <span className="font-bold text-gray-700 dark:text-gray-300">
-                                    Select Size:
-                                </span>
-                                <div className="flex items-center mt-2">
-                                    <button className="bg-gray-300 dark:bg-gray-700 text-gray-700 dark:text-white py-2 px-4 rounded-full font-bold mr-2 hover:bg-gray-400 dark:hover:bg-gray-600">
-                                        S
-                                    </button>
-                                    <button className="bg-gray-300 dark:bg-gray-700 text-gray-700 dark:text-white py-2 px-4 rounded-full font-bold mr-2 hover:bg-gray-400 dark:hover:bg-gray-600">
-                                        M
-                                    </button>
-                                    <button className="bg-gray-300 dark:bg-gray-700 text-gray-700 dark:text-white py-2 px-4 rounded-full font-bold mr-2 hover:bg-gray-400 dark:hover:bg-gray-600">
-                                        L
-                                    </button>
-                                    <button className="bg-gray-300 dark:bg-gray-700 text-gray-700 dark:text-white py-2 px-4 rounded-full font-bold mr-2 hover:bg-gray-400 dark:hover:bg-gray-600">
-                                        XL
-                                    </button>
-                                    <button className="bg-gray-300 dark:bg-gray-700 text-gray-700 dark:text-white py-2 px-4 rounded-full font-bold mr-2 hover:bg-gray-400 dark:hover:bg-gray-600">
-                                        XXL
-                                    </button>
+
+                                <div className="mb-4">
+                                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                                        Select Color:
+                                    </label>
+                                    <select
+                                        value={color}
+                                        onChange={handleColorChange}
+                                        className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    >
+                                        <option value="">Choose Color</option>
+                                        <option value="red">Red</option>
+                                        <option value="blue">Blue</option>
+                                        <option value="green">Green</option>
+                                        <option value="black">Black</option>
+                                    </select>
                                 </div>
                             </div>
                             <div>
@@ -108,7 +118,6 @@ function Productdetails() {
                     </div>
                 </div>
             </div>
-
         </div>
     );
 }

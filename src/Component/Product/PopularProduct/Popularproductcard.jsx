@@ -2,7 +2,6 @@ import { FaStar } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 function Popularproductcard({ product }) {
-    // console.log(product)
     return (
         <div>
             <Link className="p-3  border-2 rounded-lg bg-[#EBEBEB]  hover:shadow-2xl hover:shadow-blue-500/20 flex flex-col items-center"

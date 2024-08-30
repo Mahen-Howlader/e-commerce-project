@@ -10,6 +10,7 @@ import SignUp from "../Pages/Authentication/SignUp";
 import Dashboard from "../Pages/Dashboard/Dashboard";
 import Statistic from "../DashboardComponent/Statistic/Statistic";
 import Productdetails from "../Component/ProductDetails/Productdetails";
+import Cart from "../Pages/Cart/Cart";
 const router = createBrowserRouter([
     {
         path: "/",
@@ -29,12 +30,24 @@ const router = createBrowserRouter([
                 element: <Productdetails></Productdetails>
             },
             {
+                path: "/womens/:id",
+                element: <Productdetails></Productdetails>
+            },
+            {
+                path: "/mens/:id",
+                element: <Productdetails></Productdetails>
+            },
+            {
                 path: "/mens",
                 element: <Mens></Mens>
             },
             {
                 path: "/womens",
                 element: <Womens></Womens>
+            },
+            {
+                path: "/cart",
+                element: <Cart></Cart>
             },
 
         ],
