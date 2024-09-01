@@ -3,8 +3,14 @@ import { GrDashboard, GrRestroomWomen } from "react-icons/gr";
 import { LiaBabySolid } from "react-icons/lia";
 import { MdDashboard, MdMenu, MdPeople } from "react-icons/md";
 import { NavLink } from "react-router-dom";
+import useAuth from "../../Provider/useAuth";
 
 function Navbar(props) {
+    const { user, } = useAuth();
+
+    function handelLogOut() {
+        logOut()
+    }
     return (
         <div className="bg-white border-b-2 fixed w-full z-50 top-0 left-0">
             <div className="navbar  container mx-auto  flex items-center mb-1">
@@ -154,23 +160,44 @@ function Navbar(props) {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <div className="order-2 md:order-3">
-                        <NavLink to={"/login"} className="px-4 py-2 bg-indigo-500 hover:bg-indigo-600 text-gray-50 rounded-xl flex items-center gap-2">
-                            {/* Heroicons - Login Solid */}
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="h-5 w-5"
-                                viewBox="0 20 20"
-                                fill="currentColor"
-                            >
-                                <path
-                                    fillRule="evenodd"
-                                    d="M3 3a1 1 0 011 1v12a1 1 0 11-2 0V4a1 1 0 011-1zm7.707 3.293a1 1 0 010 1.414L9.414 9H17a1 1 0 110 2H9.414l1.293 1.293a1 1 0 01-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0z"
-                                    clipRule="evenodd"
-                                />
-                            </svg>
-                            <p>Login</p>
-                        </NavLink>
+                    <div className="order-2 md:order-3">{ }
+                        {
+                            user !== <NavLink onClick={handelLogOut} className="px-4 py-2 bg-indigo-500 hover:bg-indigo-600 text-gray-50 rounded-xl flex items-center gap-2">
+                                {/* Heroicons - Login Solid */}
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="h-5 w-5"
+                                    viewBox="0 20 20"
+                                    fill="currentColor"
+                                >
+                                    <path
+                                        fillRule="evenodd"
+                                        d="M3 3a1 1 0 011 1v12a1 1 0 11-2 0V4a1 1 0 011-1zm7.707 3.293a1 1 0 010 1.414L9.414 9H17a1 1 0 110 2H9.414l1.293 1.293a1 1 0 01-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0z"
+                                        clipRule="evenodd"
+                                    />
+                                </svg>
+                                <p>Login</p>
+                            </NavLink>
+                        }
+                        {
+                            user && <NavLink to={"/login"} className="px-4 py-2 bg-indigo-500 hover:bg-indigo-600 text-gray-50 rounded-xl flex items-center gap-2">
+                                {/* Heroicons - Login Solid */}
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="h-5 w-5"
+                                    viewBox="0 20 20"
+                                    fill="currentColor"
+                                >
+                                    <path
+                                        fillRule="evenodd"
+                                        d="M3 3a1 1 0 011 1v12a1 1 0 11-2 0V4a1 1 0 011-1zm7.707 3.293a1 1 0 010 1.414L9.414 9H17a1 1 0 110 2H9.414l1.293 1.293a1 1 0 01-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0z"
+                                        clipRule="evenodd"
+                                    />
+                                </svg>
+                                <p>Logout</p>
+                            </NavLink>
+                        }
+
                     </div>
                 </div>
             </div>
