@@ -13,9 +13,9 @@ function Product() {
         }
     })
 
-if(isLoading) return <Loading></Loading>
+    if (isLoading) return <Loading></Loading>
 
-// console.log(data)
+    // console.log(data)
 
     return (
         <div >
@@ -23,8 +23,8 @@ if(isLoading) return <Loading></Loading>
                 <h2 className='text-center pb-5 text-3xl uppercase font-bold'>Popular Product</h2>
                 <hr className='h-[3px] md:w-1/3 mx-auto bg-gradient-to-l from-transparent via-black to-transparent  mb-10' />
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10'>
-                    {data?.slice(0,6).map((item, index) => {
-                        return <Popularproductcard  key={index} product={item}></Popularproductcard>
+                    {data?.slice(0, 6).map((item, index) => {
+                        return <Popularproductcard key={index} product={item}></Popularproductcard>
                     })}
                 </div>
             </div>

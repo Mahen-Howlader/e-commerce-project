@@ -1,7 +1,7 @@
 import { Children, useEffect, useState } from "react";
 import { createContext } from "react";
-import auth from './../Pages/Firebase/Firebase';
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
+import auth from '../Pages/Firebase/firebase.config';
+import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import { GoogleAuthProvider } from "firebase/auth";
 
 
@@ -11,13 +11,13 @@ function AuthProvider({ children }) {
     const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(true);
     const provider = new GoogleAuthProvider();
-    console.log(user)
+    // console.log(user)
     const createUser = (email, password) => {
         setLoading(true)
         return createUserWithEmailAndPassword(auth, email, password)
     }
 
-    const login = () => {
+    const login = (email, password) => {
         setLoading(true)
         return signInWithEmailAndPassword(auth, email, password);
     }
@@ -27,24 +27,19 @@ function AuthProvider({ children }) {
         return signInWithPopup(auth, provider)
     }
 
-    const logOut = () => {
-        setLoading(true)
-        return signOut()
-    }
+
 
     const updateUserProfile = (name) => {
         return updateProfile(auth.currentUser, {
-          displayName: name,
+            displayName: name,
         });
-      };
-    
+    };
+
 
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, (user) => {
-            if (user) {
-                setUser(user);
-            }
             setLoading(false)
+            setUser(user);
         })
         return () => {
             return unSubscribe();
@@ -52,9 +47,17 @@ function AuthProvider({ children }) {
     }, []);
 
 
+    const logOut = () => {
+        signOut(auth).then(() => {
+            alert("Logout succesful")
+        })
+        //  setUser(null)
+    }
+
     const authInfo = {
         user,
         loading,
+        setLoading,
         login,
         createUser,
         googleLogin,

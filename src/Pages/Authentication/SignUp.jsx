@@ -1,10 +1,14 @@
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../Provider/useAuth";
 import toast from "react-hot-toast";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const SignUp = () => {
-    const { user, createUser, setUser,logOut,updateUserProfile } = useAuth()
+    const { user, createUser, setUser, logOut, updateUserProfile, googleLogin } = useAuth()
     const navigate = useNavigate()
+    const axiosPublic = useAxiosPublic()
+    // console.log(user)
+
     async function handelSignupInfo(e) {
         e.preventDefault();
         // console.log(e.target.email)
@@ -18,10 +22,42 @@ const SignUp = () => {
             toast.success("Successfully register!");
             navigate("/");
             await updateUserProfile(name)
+
+            const userInfo = {
+                email,
+                name,
+                role : "user",
+
+            }
+            // axiosPublic
+            axiosPublic.post("/user", userInfo)
         }
         catch (err) {
             console.log(err)
         }
+    }
+
+    // handelGoogleLogin
+
+
+    async function handelGoogleLogin() {
+        try {
+            const data = await googleLogin();
+            toast.success("Signup Successful");
+            const name = data?.user?.displayName;
+            const email = data?.user?.email;
+            const userInfo = {
+                name,
+                email,
+                role : "user",
+            };
+            axiosPublic.post("/user", userInfo);
+            navigate("/")
+        }
+        catch (error) {
+            console.log(error?.message)
+        }
+
     }
 
 
@@ -38,7 +74,7 @@ const SignUp = () => {
                         </div>
                         <div className="w-full flex-1 mt-8 ">
                             <div className="flex flex-col items-center">
-                                <button className="w-full max-w-xs font-bold shadow-sm rounded-lg py-3 bg-indigo-100 text-gray-800 flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline">
+                                <button onClick={handelGoogleLogin} className="w-full max-w-xs font-bold shadow-sm rounded-lg py-3 bg-indigo-100 text-gray-800 flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline">
                                     <div className="bg-white p-2 rounded-full">
                                         <svg className="w-4" viewBox="0 0 533.5 544.3">
                                             <path

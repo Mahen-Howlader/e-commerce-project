@@ -11,6 +11,12 @@ import Dashboard from "../Pages/Dashboard/Dashboard";
 import Statistic from "../DashboardComponent/Statistic/Statistic";
 import Productdetails from "../Component/ProductDetails/Productdetails";
 import Cart from "../Pages/Cart/Cart";
+import Privedrouter from "../Pages/Privedrouter/Privedrouter";
+import UsersignIn from "../Pages/Privedrouter/UsersignIn";
+import Alluser from "../DashboardComponent/AllUser/Alluser";
+import Managebooking from "../DashboardComponent/Managebooking/Managebooking";
+import Manageitems from "../DashboardComponent/Manageitems/Manageitems";
+import Allitems from "../DashboardComponent/Allitems/Allitems";
 const router = createBrowserRouter([
     {
         path: "/",
@@ -23,49 +29,65 @@ const router = createBrowserRouter([
             },
             {
                 path: "/kids",
-                element: <Kids></Kids>
+                element: <Privedrouter><Kids></Kids></Privedrouter>
             },
             {
                 path: "/kids/:id",
-                element: <Productdetails></Productdetails>
+                element: <Privedrouter><Productdetails></Productdetails></Privedrouter>
             },
             {
                 path: "/womens/:id",
-                element: <Productdetails></Productdetails>
+                element: <Privedrouter><Productdetails></Productdetails></Privedrouter>
             },
             {
                 path: "/mens/:id",
-                element: <Productdetails></Productdetails>
+                element: <Privedrouter><Productdetails></Productdetails></Privedrouter>
             },
             {
                 path: "/mens",
-                element: <Mens></Mens>
+                element: <Privedrouter><Mens></Mens></Privedrouter>
             },
             {
                 path: "/womens",
-                element: <Womens></Womens>
+                element: <Privedrouter><Womens></Womens></Privedrouter>
             },
             {
                 path: "/cart",
-                element: <Cart></Cart>
+                element: <Privedrouter><Cart></Cart></Privedrouter>
             },
 
         ],
     }, {
         path: "/login",
-        element: <Login></Login>
+        element: <UsersignIn><Login></Login></UsersignIn>
     }, {
         path: "/signup",
-        element: <SignUp></SignUp>
+        element: <UsersignIn><SignUp></SignUp></UsersignIn>
     },
     {
         path: "/dashboard",
-        element: <Dashboard />,
+        element: <Privedrouter><Dashboard /></Privedrouter>,
         children: [
             {
                 index: true,
                 element: <Statistic></Statistic>
-            }
+            },
+            {
+                path: "alluser",
+                element: <Alluser></Alluser>
+            },
+            {
+                path: "managebooking",
+                element: <Managebooking></Managebooking>
+            },
+            {
+                path: "manageitems",
+                element: <Manageitems></Manageitems>
+            },
+            {
+                path: "allitems",
+                element: <Allitems></Allitems>
+            },
         ]
     },
 ]);

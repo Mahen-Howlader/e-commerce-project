@@ -5,12 +5,11 @@ import { MdDashboard, MdMenu, MdPeople } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 import useAuth from "../../Provider/useAuth";
 
-function Navbar(props) {
-    const { user, } = useAuth();
+function Navbar() {
+    const { user, logOut } = useAuth();
+    console.log(user)
+    console.log(logOut)
 
-    function handelLogOut() {
-        logOut()
-    }
     return (
         <div className="bg-white border-b-2 fixed w-full z-50 top-0 left-0">
             <div className="navbar  container mx-auto  flex items-center mb-1">
@@ -33,7 +32,7 @@ function Navbar(props) {
                         </div>
                         <ul
                             tabIndex={0}
-                            className="  dropdown-content bg-base-100 z-40 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                            className="  dropdown-content bg-base-100 z-40 rounded-box mt-3 w-52 p-2 shadow">
                             <li className="md:px-4 md:py-2 font-bold">
 
                                 <NavLink
@@ -77,7 +76,7 @@ function Navbar(props) {
                             </li>
                         </ul>
                     </div>
-                    <a className="text-3xl font-extrabold uppercase text-xl">Mahin</a>
+                    <a className="text-3xl font-extrabold uppercase ">Mahin</a>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className=" menu-horizontal items-center px-1">
@@ -160,44 +159,43 @@ function Navbar(props) {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <div className="order-2 md:order-3">{ }
+                    <div className="order-2 md:order-3">
                         {
-                            user !== <NavLink onClick={handelLogOut} className="px-4 py-2 bg-indigo-500 hover:bg-indigo-600 text-gray-50 rounded-xl flex items-center gap-2">
-                                {/* Heroicons - Login Solid */}
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    className="h-5 w-5"
-                                    viewBox="0 20 20"
-                                    fill="currentColor"
-                                >
-                                    <path
-                                        fillRule="evenodd"
-                                        d="M3 3a1 1 0 011 1v12a1 1 0 11-2 0V4a1 1 0 011-1zm7.707 3.293a1 1 0 010 1.414L9.414 9H17a1 1 0 110 2H9.414l1.293 1.293a1 1 0 01-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0z"
-                                        clipRule="evenodd"
-                                    />
-                                </svg>
-                                <p>Login</p>
-                            </NavLink>
-                        }
-                        {
-                            user && <NavLink to={"/login"} className="px-4 py-2 bg-indigo-500 hover:bg-indigo-600 text-gray-50 rounded-xl flex items-center gap-2">
-                                {/* Heroicons - Login Solid */}
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    className="h-5 w-5"
-                                    viewBox="0 20 20"
-                                    fill="currentColor"
-                                >
-                                    <path
-                                        fillRule="evenodd"
-                                        d="M3 3a1 1 0 011 1v12a1 1 0 11-2 0V4a1 1 0 011-1zm7.707 3.293a1 1 0 010 1.414L9.414 9H17a1 1 0 110 2H9.414l1.293 1.293a1 1 0 01-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0z"
-                                        clipRule="evenodd"
-                                    />
-                                </svg>
-                                <p>Logout</p>
-                            </NavLink>
-                        }
+                            user ?
+                                <button onClick={logOut} className="px-4 py-2 bg-indigo-500 hover:bg-indigo-600 text-gray-50 rounded-xl flex items-center gap-2">
+                                    {/* Heroicons - Login Solid */}
+                                    {/* <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        className="h-5 w-5"
+                                        viewBox="0 20 20"
+                                        fill="currentColor"
+                                    >
+                                        <path
+                                            fillRule="evenodd"
+                                            d="M3 3a1 1 0 011 1v12a1 1 0 11-2 0V4a1 1 0 011-1zm7.707 3.293a1 1 0 010 1.414L9.414 9H17a1 1 0 110 2H9.414l1.293 1.293a1 1 0 01-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0z"
+                                            clipRule="evenodd"
+                                        />
+                                    </svg> */}
+                                    Logout
+                                </button>
+                                :
 
+                                user || <NavLink to={"/login"} className="px-4 py-2 bg-indigo-500 hover:bg-indigo-600 text-gray-50 rounded-xl flex items-center gap-2">
+                                    {/* <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        className="h-5 w-5"
+                                        viewBox="0 20 20"
+                                        fill="currentColor"
+                                    >
+                                        <path
+                                            fillRule="evenodd"
+                                            d="M3 3a1 1 0 011 1v12a1 1 0 11-2 0V4a1 1 0 011-1zm7.707 3.293a1 1 0 010 1.414L9.414 9H17a1 1 0 110 2H9.414l1.293 1.293a1 1 0 01-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0z"
+                                            clipRule="evenodd"
+                                        />
+                                    </svg> */}
+                                    Login
+                                </NavLink>
+                        }
                     </div>
                 </div>
             </div>
