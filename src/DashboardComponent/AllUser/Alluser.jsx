@@ -8,7 +8,6 @@ import { useState } from "react";
 
 function Alluser() {
     const axiosPublic = useAxiosPublic();
-    const [role, setRole] = useState("")
     // Query to fetch user data
     const { data, isLoading, refetch } = useQuery({
         queryKey: ["userData"],
@@ -52,7 +51,7 @@ function Alluser() {
     const { mutateAsync: mutateAsyncUser } = useMutation({
         mutationFn: async (data) => {
             console.log(data);
-            const result = await axiosPublic.patch(`/rolechange/admin/${data?.email}`, {role : data?.userRole});
+            const result = await axiosPublic.patch(`/rolechange/admin/${data?.email}`, { role: data?.userRole });
             return result;
         },
         onSuccess: (data) => {
@@ -73,7 +72,10 @@ function Alluser() {
 
     }
 
+
+
     if (isLoading) return <Loading />;
+    console.log(data);
 
     return (
         <div>
@@ -95,7 +97,7 @@ function Alluser() {
                                 </th>
                                 <td className="px-6 py-4">{val?.email}</td>
                                 <td className="px-6 py-4">
-                                    <select onChange={(e) => handelUserRole(e, val?.email)} id="userRole" name="userRole">
+                                    <select defaultValue={val?.role} onChange={(e) => handelUserRole(e, val?.email)} id="userRole" name="userRole">
                                         <option value="admin">Admin</option>
                                         <option value="member">Member</option>
                                         <option value="user">User</option>
