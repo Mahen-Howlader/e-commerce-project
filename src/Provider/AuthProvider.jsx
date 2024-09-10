@@ -4,6 +4,7 @@ import auth from '../Pages/Firebase/firebase.config';
 import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import { GoogleAuthProvider } from "firebase/auth";
 import useAxiosPublic from "../Hooks/useAxiosPublic";
+import toast from "react-hot-toast";
 
 
 export const AuthContext = createContext(null);
@@ -63,7 +64,7 @@ function AuthProvider({ children }) {
 
     const logOut = () => {
         signOut(auth).then(() => {
-            alert("Logout succesful")
+            toast.success("Logout succesful")
         })
         //  setUser(null)
     }

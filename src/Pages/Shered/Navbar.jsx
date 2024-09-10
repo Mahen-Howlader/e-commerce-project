@@ -7,8 +7,7 @@ import useAuth from "../../Provider/useAuth";
 
 function Navbar() {
     const { user, logOut } = useAuth();
-    console.log(user)
-    console.log(logOut)
+  
 
     return (
         <div className="bg-white border-b-2 fixed w-full z-50 top-0 left-0">

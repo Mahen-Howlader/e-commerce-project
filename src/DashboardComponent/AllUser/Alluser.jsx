@@ -4,18 +4,20 @@ import { MdDelete } from "react-icons/md";
 import Loading from "../../Component/Loading/Loading";
 import toast from "react-hot-toast";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
-import { useState } from "react";
+import useAxiosSequre from "../../Hooks/useAxiosSequre";
 
 function Alluser() {
     const axiosPublic = useAxiosPublic();
+    const axiosSequre = useAxiosSequre();
     // Query to fetch user data
     const { data, isLoading, refetch } = useQuery({
         queryKey: ["userData"],
         queryFn: async () => {
-            const response = await axiosPublic("/user");
-            return response.data;
+            const response = await axiosSequre("/user");
+            return response?.data;
         }
     });
+
 
     // Mutation to delete a user
     const { mutateAsync } = useMutation({
@@ -75,7 +77,7 @@ function Alluser() {
 
 
     if (isLoading) return <Loading />;
-    console.log(data);
+    // console.log(data);
 
     return (
         <div>
