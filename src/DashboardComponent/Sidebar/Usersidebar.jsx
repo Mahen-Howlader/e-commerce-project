@@ -4,7 +4,7 @@ import { Link, NavLink } from "react-router-dom";
 function Usersidebar(props) {
     return (
         <div>
-        <div className=" flex flex-col bg-clip-border min-h-screen bg-white text-gray-700 h-[calc(100vh-2rem)] w-full  p-4 shadow-xl shadow-blue-gray-900/5">
+        <div className=" flex flex-col bg-clip-border min-h-screen bg-white text-gray-700 h-[calc(100vh)] w-full  p-4 shadow-xl shadow-blue-gray-900/5">
                 <div className="mb-2 p-4 flex justify-between items-center">
                     <h5 className="block antialiased tracking-normal font-sans text-xl font-semibold leading-snug text-gray-900">Dashboard</h5>
                     <Link to={"/"}>Home</Link> 
@@ -26,10 +26,27 @@ function Usersidebar(props) {
                             <FaHome />
                         </div>Add Items
                     </NavLink>
-                    
 
-                    
-
+                    <NavLink to="allproduct" className={({ isActive }) => `${isActive ? "bg-red-500 text-white" : ""} flex items-center w-full p-3  rounded-lg text-start leading-tight transition-all `}>
+                        <div className="grid place-items-center mr-4">
+                            <FaHome />
+                        </div>All Product
+                    </NavLink>
+                    <NavLink to="productCategory" className={({ isActive }) => `${isActive ? "bg-red-500 text-white" : ""} flex items-center w-full p-3  rounded-lg text-start leading-tight transition-all `}>
+                        <div className="grid place-items-center mr-4">
+                            <FaHome />
+                        </div>Product Category
+                    </NavLink>
+                    <NavLink to="viewalluser" className={({ isActive }) => `${isActive ? "bg-red-500 text-white" : ""} flex items-center w-full p-3  rounded-lg text-start leading-tight transition-all `}>
+                        <div className="grid place-items-center mr-4">
+                            <FaHome />
+                        </div>All User
+                    </NavLink>
+                    <NavLink to="viewPayment" className={({ isActive }) => `${isActive ? "bg-red-500 text-white" : ""} flex items-center w-full p-3  rounded-lg text-start leading-tight transition-all `}>
+                        <div className="grid place-items-center mr-4">
+                            <FaHome />
+                        </div>View Payment
+                    </NavLink>
                 </nav>
             </div>
     </div>

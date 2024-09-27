@@ -17,6 +17,10 @@ import Alluser from "../DashboardComponent/AllUser/Alluser";
 import Managebooking from "../DashboardComponent/Managebooking/Managebooking";
 import Manageitems from "../DashboardComponent/Manageitems/Manageitems";
 import Allitems from "../DashboardComponent/Allitems/Allitems";
+import Allproduct from "../DashboardComponent/Allproduct/Allproduct";
+import Productcategory from "../DashboardComponent/ProductCategory/Productcategory";
+import Viewalluser from "../DashboardComponent/Viewalluser/Viewalluser";
+import ViewPayment from "../DashboardComponent/ViewPayment/ViewPayment";
 const router = createBrowserRouter([
     {
         path: "/",
@@ -87,6 +91,22 @@ const router = createBrowserRouter([
             {
                 path: "allitems",
                 element: <Allitems></Allitems>
+            },
+            {
+                path: "allproduct",
+                element: <Allproduct></Allproduct>
+            },
+            {
+                path: "productCategory",
+                element: <Productcategory></Productcategory>
+            },
+            {
+                path: "viewalluser",
+                element: <Viewalluser></Viewalluser>
+            },
+            {
+                path: "viewPayment",
+                element: <ViewPayment></ViewPayment>
             },
         ]
     },
