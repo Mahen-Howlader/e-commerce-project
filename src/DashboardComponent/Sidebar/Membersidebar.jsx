@@ -17,7 +17,7 @@ function Membersidebar(props) {
                         <div className="grid place-items-center mr-4">
                             <FaHome />
                         </div>
-                        Admin Home
+                        Member Home
                     </NavLink>
 
                     <NavLink to="allitems" className={({ isActive }) => `${isActive ? "bg-red-500 text-white" : ""} flex items-center w-full p-3  rounded-lg text-start leading-tight transition-all `}>

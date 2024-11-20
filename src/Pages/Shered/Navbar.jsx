@@ -4,34 +4,28 @@ import { LiaBabySolid } from "react-icons/lia";
 import { MdDashboard, MdMenu, MdPeople } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 import useAuth from "../../Provider/useAuth";
+import { useEffect, useState } from "react";
+import { GoSignOut } from "react-icons/go";
+import { CgProfile } from "react-icons/cg";
 
 function Navbar() {
-    const { user, logOut } = useAuth();
-  
 
+    const { user, logOut } = useAuth();
+    const [isDropdownOpen, setDropdownOpen] = useState(false);
+    console.log(user)
+
+    const toggleDropdown = () => setDropdownOpen(!isDropdownOpen);
     return (
         <div className="bg-white border-b-2 fixed w-full z-50 top-0 left-0">
-            <div className="navbar  container mx-auto  flex items-center mb-1">
+            <div className="navbar container mx-auto  flex items-center mb-1">
                 <div className="navbar-start">
                     <div className="dropdown ">
                         <div tabIndex={0} role="button" className="lg:hidden mr-4  hover:text-indigo-400">
-                            {/* <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="h-5 w-5"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth="2"
-                                    d="M4 6h16M4 12h8m-8 6h16" />
-                            </svg> */}
                             <MdMenu size={30} />
                         </div>
                         <ul
                             tabIndex={0}
-                            className="  dropdown-content bg-base-100 z-40 rounded-box mt-3 w-52 p-2 shadow">
+                            className="dropdown-content bg-base-100 z-40 rounded-box mt-3 w-52 p-2 shadow">
                             <li className="md:px-4 md:py-2 font-bold">
 
                                 <NavLink
@@ -120,16 +114,6 @@ function Navbar() {
                                 <span>Kid's</span>
                             </NavLink>
                         </li>
-                        <li className="md:px-4 md:py-2 font-bold">
-                            <NavLink
-                                to="/dashboard"
-                                className={({ isActive }) => isActive ? "border-b-2 pb-1 text-indigo-600 border-indigo-500  flex items-center gap-x-2" : " flex items-center gap-x-2"}
-                            >
-                                <MdDashboard size={20} />
-
-                                <span>Dashboard</span>
-                            </NavLink>
-                        </li>
                         <li>
                             <NavLink to={"/cart"} className="flex  items-center justify-center bg-white">
                                 <div className="relative scale-75">
@@ -161,22 +145,74 @@ function Navbar() {
                     <div className="order-2 md:order-3">
                         {
                             user ?
-                                <button onClick={logOut} className="px-4 py-2 bg-indigo-500 hover:bg-indigo-600 text-gray-50 rounded-xl flex items-center gap-2">
-                                    {/* Heroicons - Login Solid */}
-                                    {/* <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        className="h-5 w-5"
-                                        viewBox="0 20 20"
-                                        fill="currentColor"
+
+
+                                <div className="relative font-[sans-serif] w-max mx-auto">
+                                    <button
+                                        type="button"
+                                        onClick={toggleDropdown}
+                                        className="px-4 py-2 flex items-center rounded-full text-[#333] text-sm border border-gray-300 outline-none hover:bg-gray-100"
                                     >
-                                        <path
-                                            fillRule="evenodd"
-                                            d="M3 3a1 1 0 011 1v12a1 1 0 11-2 0V4a1 1 0 011-1zm7.707 3.293a1 1 0 010 1.414L9.414 9H17a1 1 0 110 2H9.414l1.293 1.293a1 1 0 01-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0z"
-                                            clipRule="evenodd"
+                                        <img
+                                            src={`${user?.photoURL}`}
+                                            alt="Profile"
+                                            className="w-7 h-7 mr-3 rounded-full"
                                         />
-                                    </svg> */}
-                                    Logout
-                                </button>
+                                        {user?.displayName.slice(0, 10)}..
+                                        <svg className="w-3 fill-gray-400 inline ml-3" viewBox="0 0 24 24">
+                                            <path d="..." />
+                                        </svg>
+                                    </button>
+
+                                    <ul className={`absolute bg-white py-2 rounded-lg ${isDropdownOpen ? '' : 'hidden'}`}>
+                                        <li className="md:px-4 md:py-2 text-sm">
+                                        <NavLink
+                                                to="/dashboard"
+                                                className={({ isActive }) => isActive ? "border-b-2 pb-1  text-indigo-600 border-indigo-500  flex items-center gap-x-2" : " flex items-center gap-x-2"}
+                                            >
+                                                <CgProfile size={20} />
+                                                <span className="">View Profile</span>
+                                            </NavLink>
+                                        </li>
+
+                                        <li className="md:px-4 md:py-2 text-sm">
+                                            <NavLink
+                                                to="/dashboard"
+                                                className={({ isActive }) => isActive ? "border-b-2 pb-1  text-indigo-600 border-indigo-500  flex items-center gap-x-2" : " flex items-center gap-x-2"}
+                                            >
+                                                <MdDashboard size={20} />
+                                                <span className="">Dashboard</span>
+                                            </NavLink>
+                                        </li>
+                                        <li className="py-2.5 md:px-4 md:py-2 flex items-center hover:bg-gray-100 text-[#333] text-sm cursor-pointer">
+                                        <div
+                                                className="flex items-center gap-x-2"
+                                            >
+                                           <GoSignOut size={20} />
+                                           <span className="">Sign Out</span>
+                                            </div>
+                                            
+                                            
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                // <button onClick={logOut} className="px-4 py-2 bg-indigo-500 hover:bg-indigo-600 text-gray-50 rounded-xl flex items-center gap-2">
+                                //     {/* Heroicons - Login Solid */}
+                                //     {/* <svg
+                                //         xmlns="http://www.w3.org/2000/svg"
+                                //         className="h-5 w-5"
+                                //         viewBox="0 20 20"
+                                //         fill="currentColor"
+                                //     >
+                                //         <path
+                                //             fillRule="evenodd"
+                                //             d="M3 3a1 1 0 011 1v12a1 1 0 11-2 0V4a1 1 0 011-1zm7.707 3.293a1 1 0 010 1.414L9.414 9H17a1 1 0 110 2H9.414l1.293 1.293a1 1 0 01-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0z"
+                                //             clipRule="evenodd"
+                                //         />
+                                //     </svg> */}
+                                //     Logout
+                                // </button>
                                 :
 
                                 user || <NavLink to={"/login"} className="px-4 py-2 bg-indigo-500 hover:bg-indigo-600 text-gray-50 rounded-xl flex items-center gap-2">

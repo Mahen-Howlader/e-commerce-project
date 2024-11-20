@@ -12,7 +12,7 @@ function Sidebar() {
     const [admin, setAdmin] = useState(true)
     const { isAdmin } = useRole();
 
-
+    console.log(isAdmin)
     const role = isAdmin?.role;
     return (
         <div>
